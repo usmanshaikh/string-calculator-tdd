@@ -29,4 +29,16 @@ describe('String Calculator', () => {
   test('should throw an error when multiple negative numbers are provided, listing all negative numbers', () => {
     expect(() => add('1,-1,-2,-3')).toThrow('negative numbers not allowed: -1, -2, -3');
   });
+
+  test('should return the sum of numbers while ignoring alphabets', () => {
+    expect(add('1,a,1')).toBe(2);
+  });
+
+  test('should return the sum of numbers while ignoring multiple alphabets and empty values', () => {
+    expect(add('1,a,1,b,,')).toBe(2);
+  });
+
+  test('should return 0 if the input contains only commas', () => {
+    expect(add(',,,,,')).toBe(0);
+  });
 });

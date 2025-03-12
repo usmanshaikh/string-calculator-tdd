@@ -14,6 +14,6 @@ export const add = (n: string): number => {
   }
 
   return str.split(',').reduce((acc, cur) => {
-    return acc + Number(cur);
+    return acc + (isNaN(Number(cur)) ? 0 : Number(cur));
   }, 0);
 };
