@@ -1,9 +1,9 @@
 export const add = (n: string): number => {
-  if (typeof n === 'string' && n === '') {
-    return 0;
-  } else {
-    return n.split(',').reduce((acc, cur) => {
-      return acc + parseInt(cur);
-    }, 0);
-  }
+  if (!n) return 0;
+
+  let str = n.replace(/\n/g, ',');
+
+  return str.split(',').reduce((acc, cur) => {
+    return acc + Number(cur);
+  }, 0);
 };

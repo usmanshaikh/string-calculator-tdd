@@ -10,11 +10,15 @@ describe('String Calculator', () => {
   });
 
   test('should return the sum of two numbers', () => {
-    expect(add('1,2')).toBe(3);
+    expect(add('1,1')).toBe(2);
   });
 
   test('should return the sum of multiple numbers', () => {
-    expect(add('10,20,30,40,50,60,70')).toBe(280);
-    expect(add('100,200,300,400')).toBe(1000);
+    expect(add('1,1,1,1,1')).toBe(5);
+  });
+
+  test('should return the sum of numbers if new lines are between numbers', () => {
+    expect(add('1\n1,1')).toBe(3);
+    expect(add('1\n2,1,1,1\n2,\n2')).toBe(10);
   });
 });

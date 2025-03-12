@@ -2,8 +2,9 @@ import { add } from './string-calculator';
 
 const inputString = '';
 // const inputString  = '1';
-// const inputString  = '1,2';
-// const inputString  = '1,2,3,4,5';
-// const inputString  = '100,200,300,400';
+// const inputString  = '1,1';
+// const inputString  = '1,1,1,1,1';
+// const inputString = '1\n1,1';
+// const inputString = '1\n2,1,1,1\n2,\n2';
 
-console.log(`Result: ${add(inputString)}`);
+console.log(`Output: ${add(inputString)}`);
