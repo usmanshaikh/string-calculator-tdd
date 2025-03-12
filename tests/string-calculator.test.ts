@@ -49,12 +49,26 @@ describe('Handling Non-Numeric', () => {
   });
 });
 
+describe('Handling Custom Delimiters', () => {
+  test('should return the sum of numbers using a custom delimiter', () => {
+    expect(add('//;\n1;2')).toBe(3);
+  });
+
+  test('should return the sum of numbers when multiple single-character custom delimiters', () => {
+    expect(add('//[*][%]\n1*1%1')).toBe(3);
+  });
+
+  test('should return the sum of numbers when a custom delimiter of any length', () => {
+    expect(add('//[***]\n1***1***1')).toBe(3);
+  });
+
+  test('should return the sum of numbers when multiple custom delimiters with different lengths', () => {
+    expect(add('//[***][%%]\n1***1***1%%1')).toBe(4);
+  });
+});
+
 describe('Special Cases', () => {
   test('should return the sum of numbers, ignoring numbers greater than 1000', () => {
     expect(add('1,1,1000,1001')).toBe(1002);
-  });
-
-  test('should return the sum of numbers using a custom delimiter', () => {
-    expect(add('//;\n1;2')).toBe(3);
   });
 });

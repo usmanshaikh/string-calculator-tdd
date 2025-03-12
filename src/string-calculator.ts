@@ -2,6 +2,25 @@ export const add = (n: string): number => {
   // Return 0 if the input string is empty
   if (!n) return 0;
 
+  // Custom delimiters
+  if (n.startsWith('//')) {
+    let delimiterEndIndex = n.indexOf('\n'); // Find end of delimiter section
+    let delimiterSection = n.slice(2, delimiterEndIndex); // Extract delimiter section
+
+    let delimiters: string[] = [];
+    if (delimiterSection.startsWith('[') && delimiterSection.endsWith(']')) {
+      // Multiple delimiters
+      delimiterSection = delimiterSection.slice(1, -1); // Remove outer brackets
+      delimiters = delimiterSection.split('][');
+    } else {
+      // Single delimiter
+      delimiters = [delimiterSection];
+    }
+
+    n = n.slice(delimiterEndIndex + 1);
+    delimiters.map((delimiter) => (n = n.split(delimiter).join(',')));
+  }
+
   // Replace newline characters with commas
   let str = n.replace(/\n/g, ',');
 
@@ -21,12 +40,6 @@ export const add = (n: string): number => {
       .reduce((acc, cur) => {
         return acc + (isNaN(cur) ? 0 : cur);
       }, 0);
-  }
-
-  // custom delimiters if the string starts with '//'
-  if (str.startsWith('//')) {
-    const delimiter = str[2]; // Extract the custom delimiter
-    str = str.slice(4).split(delimiter).join(','); // Replace custom delimiter with a comma
   }
 
   // Sum up all valid numbers

@@ -13,5 +13,8 @@ const inputString = '';
 // const inputString = ',,,,,';
 // const inputString = '1,1,1000,1001';
 // const inputString = '//;\n1;2';
+// const inputString = '//[*][%]\n1*1%1';
+// const inputString = '//[***]\n1***1***1';
+// const inputString = '//[***][%%]\n1***1***1%%1';
 
 console.log(`Output: ${add(inputString)}`);
