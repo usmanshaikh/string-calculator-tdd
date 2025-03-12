@@ -3,22 +3,17 @@ export const add = (n: string): number => {
 
   let str = n.replace(/\n/g, ',');
 
-  const hasNegative = str.split(',').some((num) => Number(num) < 0);
+  const number = str.split(',').map((num) => Number(num));
+  const hasNegative = number.some((num) => num < 0);
   if (hasNegative) {
-    throw new Error(
-      `negative numbers not allowed: ${str
-        .split(',')
-        .filter((num) => Number(num) < 0)
-        .join(', ')}`,
-    );
+    throw new Error(`negative numbers not allowed: ${number.filter((num) => num < 0).join(', ')}`);
   }
 
-  if (str.split(',').some((num) => Number(num) > 1000)) {
-    return str
-      .split(',')
-      .filter((num) => Number(num) <= 1000)
+  if (number.some((num) => num > 1000)) {
+    return number
+      .filter((num) => num <= 1000)
       .reduce((acc, cur) => {
-        return acc + (isNaN(Number(cur)) ? 0 : Number(cur));
+        return acc + (isNaN(cur) ? 0 : cur);
       }, 0);
   }
 
