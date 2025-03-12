@@ -41,4 +41,8 @@ describe('String Calculator', () => {
   test('should return 0 if the input contains only commas', () => {
     expect(add(',,,,,')).toBe(0);
   });
+
+  test('should return the sum of numbers, ignoring numbers greater than 1000', () => {
+    expect(add('1,1,1000,1001')).toBe(1002);
+  });
 });

@@ -13,6 +13,15 @@ export const add = (n: string): number => {
     );
   }
 
+  if (str.split(',').some((num) => Number(num) > 1000)) {
+    return str
+      .split(',')
+      .filter((num) => Number(num) <= 1000)
+      .reduce((acc, cur) => {
+        return acc + (isNaN(Number(cur)) ? 0 : Number(cur));
+      }, 0);
+  }
+
   return str.split(',').reduce((acc, cur) => {
     return acc + (isNaN(Number(cur)) ? 0 : Number(cur));
   }, 0);

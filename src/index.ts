@@ -10,6 +10,7 @@ import { add } from './string-calculator';
 // const inputString = '1,-1,-2,-3';
 // const inputString = '1,a,1';
 // const inputString = '1,a,1,b,,';
-const inputString = ',,,,,';
+// const inputString = ',,,,,';
+const inputString = '1,1,1000,1001';
 
 console.log(`Output: ${add(inputString)}`);
