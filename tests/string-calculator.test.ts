@@ -45,4 +45,8 @@ describe('String Calculator', () => {
   test('should return the sum of numbers, ignoring numbers greater than 1000', () => {
     expect(add('1,1,1000,1001')).toBe(1002);
   });
+
+  test('should return the sum of numbers using a custom delimiter', () => {
+    expect(add('//;\n1;2')).toBe(3);
+  });
 });
