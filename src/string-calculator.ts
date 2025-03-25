@@ -18,14 +18,18 @@ export const add = (n: string): number => {
     }
 
     n = n.slice(delimiterEndIndex + 1);
-    delimiters.map((delimiter) => (n = n.split(delimiter).join(',')));
+
+    delimiters.forEach((delimiter) => (n = n.split(delimiter).join(',')));
   }
 
   // Replace newline characters with commas
   let str = n.replace(/\n/g, ',');
 
   // Convert string into an array of numbers
-  const number = str.split(',').map((num) => Number(num));
+  const number = str
+    .split(',')
+    .map((num) => (isNaN(Number(num)) ? 0 : Number(num)))
+    .filter((num) => num !== 0);
 
   // Check for negative numbers and throw an error
   const hasNegative = number.some((num) => num < 0);
@@ -33,17 +37,10 @@ export const add = (n: string): number => {
     throw new Error(`negative numbers not allowed: ${number.filter((num) => num < 0).join(', ')}`);
   }
 
-  // If there are numbers greater than 1000 filter them out
-  if (number.some((num) => num > 1000)) {
-    return number
-      .filter((num) => num <= 1000)
-      .reduce((acc, cur) => {
-        return acc + (isNaN(cur) ? 0 : cur);
-      }, 0);
-  }
-
   // Sum up all valid numbers
-  return str.split(',').reduce((acc, cur) => {
-    return acc + (isNaN(Number(cur)) ? 0 : Number(cur));
-  }, 0);
+  return number
+    .filter((num) => num <= 1000) // If there are numbers greater than 1000 filter them out
+    .reduce((acc, cur) => {
+      return acc + cur;
+    }, 0);
 };
